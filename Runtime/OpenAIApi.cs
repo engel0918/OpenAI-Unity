@@ -78,8 +78,9 @@ namespace OpenAI
                 var asyncOperation = request.SendWebRequest();
 
                 while (!asyncOperation.isDone) await Task.Yield();
-                
-                data = JsonConvert.DeserializeObject<T>(request.downloadHandler.text, jsonSerializerSettings);
+
+                data = JsonConvert.DeserializeObject<T>(request.downloadHandler.text);
+                //data = JsonConvert.DeserializeObject<T>(request.downloadHandler.text, jsonSerializerSettings);
             }
             
             if (data?.Error != null)
